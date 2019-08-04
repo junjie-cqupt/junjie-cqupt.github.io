@@ -1,35 +1,39 @@
 ---
-layout: default
+layout: page
+title: 今、情热が岚になって
+showtag:
+- ICPC模板
 ---
+## 近期
 
-<div class="main-post-list hidden">
+{% for post in site.posts limit:5 %}
 
-  <ol class="post-list">
-    {% for post in paginator.posts %}
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="{{ post.url }}" title="访问 {{ post.title }}">{{ post.title }}</a></h2>
-      <p class="excerpt">{{ post.content | strip_html | strip_newlines | truncate: 250 }}&hellip;</p>
-      <div class="post-list__meta">        
-        <time datetime="{{post.date | date: date_to_xmlschema}}" class="post-list__meta--date date">
-          <img src="/images/calendar.png" width="20px" /> 
-          {{ post.date | date: "%F"}}</time> 
-        <div class = "tag-img-icon">
-          <img src="/images/tag-icon.svg" width="20px" /> 
-        </div>
-        <a href="/tags">
-          <div class = "post-list-icon-mate">
-            <span class="post-list__meta--tags-right">{{ post.tags }}</span>
-          </div>
-          <div class = "post-list-small-mate">
-          <a class="btn-border-small" href={{ post.url }}>阅读全文 » </a>
-          </div>
-      </div>
-      <hr class="post-list__divider" />
-    </li>
-    {% endfor %}
-  </ol>
+- [{{ post.title }}]({{ post.url }}), *{{ post.date | date_to_string }}*
 
-  {% include pagination.html %}
+{% if post.description %}
 
-</div>
+  > {{ post.description }}
 
+{% endif %}
+
+{% endfor %}
+
+- [更多…](/archive)
+
+{% for tag in page.showtag %}
+
+## {{ tag }}
+
+{% for post in site.tags[tag] %}
+
+- [{{ post.title }}]({{ post.url }})
+
+{% if post.description %}
+
+  > {{ post.description }}
+
+{% endif %}
+
+{% endfor %}
+
+{% endfor %}
