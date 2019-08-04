@@ -1,8 +1,9 @@
 ---
 layout: page
-title: 今、情热が岚になって
+title: 张俊杰的博客空间
 showtag:
-- ICPC模板
+  - ICPC模板
+published: true
 ---
 ## 近期
 
